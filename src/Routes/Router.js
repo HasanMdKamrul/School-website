@@ -13,35 +13,29 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: (
-          <>
-            <Home />
-            <Classes />
-          </>
-        ),
-        loader: () => fetch(`classes.json`),
-      },
-      {
-        path: '/home',
-        element: (
-          <>
-            <Home />
-            <Classes />
-          </>
-        ),
-        loader: () => fetch(`classes.json`),
-      },
-      {
-        path: "/classes",
-        element: <Classes />,
-        loader: () => fetch(`classes.json`),
-      },
-      {
-        path: "/class/:classId",
-        element: <ClassDetails/>,
-       loader: ({params})=> fetch(`class/${params.classId}.json`)
-      },
+        errorElement:<ErrorPage/>,
+        children: [
+          {
+            index: true,
+            element: <Home/>,
+          },
+          {
+            path: "/home",
+            element: <Home />,
+            loader: () => fetch(`classes.json`),
+          },
+          {
+            path: "/classes",
+            element: <Classes />,
+            loader: () => fetch(`classes.json`),
+          },
+          {
+            path: "/class/:classId",
+            element: <ClassDetails />,
+            loader: ({ params }) => fetch(`class/${params.classId}.json`),
+          },
+        ],
+      }
     ],
   },
 ]);
