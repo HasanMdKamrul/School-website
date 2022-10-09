@@ -4,7 +4,8 @@ import abcdAnimation from '../../assests/homeAnimation.json';
 
 const Home = () => {
   return (
-    <div className="flex flex-col justify-between max-w-xl px-4 mx-auto lg:pt-16 lg:flex-row md:px-8 lg:max-w-screen-xl">
+    <>
+         <div className="flex flex-col justify-between max-w-xl px-4 mx-auto lg:pt-16 lg:flex-row md:px-8 lg:max-w-screen-xl mb-24">
       <div className="pt-16 mb-16 lg:mb-0 lg:pt-32 lg:max-w-lg lg:pr-5">
         <div className="max-w-xl mb-6">
           <div>
@@ -38,6 +39,8 @@ const Home = () => {
         <Lottie animationData={abcdAnimation} loop={true} />
       </div>
     </div>
+    </>
+   
   );
 };
 
