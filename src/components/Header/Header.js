@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,35 +35,35 @@ export const Header = () => {
           </a>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
-              <a
-                href="/"
+              <NavLink
+                to="/home"
                 aria-label="Home"
                 title="Home"
-                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                className={({isActive})=> isActive ? "font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
               >
                 Home
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a
-                href="/classes"
+              <NavLink
+                className={({isActive})=> isActive ? "font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
+                to="/classes"
                 aria-label="Classes"
                 title="Classes"
-                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Classes
-              </a>
+              </NavLink>
             </li>
 
             <li>
-              <a
-                href="/about"
+              <NavLink
+                to="/about"
                 aria-label="About "
                 title="About "
-                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                className={({isActive})=> isActive ? "font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
               >
                 About
-              </a>
+              </NavLink>
             </li>
           </ul>
           <div className="lg:hidden">

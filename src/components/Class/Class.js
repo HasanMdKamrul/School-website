@@ -2,34 +2,33 @@ import { AcademicCapIcon, ForwardIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+
 const Class = ({ classItem: { courseName, TeacherName, picture, price,_id } }) => {
+
   return (
     <>
       <Link to={`/class/${_id}`} >
         <div className="overflow-hidden transition-shadow duration-300 bg-white  shadow-2xl p-3 rounded-2xl">
-          <a href="/" aria-label="Article">
+         
             <img
               src={picture}
               className="object-cover w-full h-64 rounded"
               alt=""
             />
-          </a>
+          
           <div className="py-5">
             <p className="mb-2 text-xs font-semibold text-gray-600 uppercase">
               13 Jul 2020
             </p>
-            <a
-              href="/"
-              aria-label="Article"
-              className="inline-block mb-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700"
-            >
+           
               <p className="text-2xl font-bold leading-5">
                 <span className="flex">
                   <AcademicCapIcon className="h-6 w-6 mr-1" />
                   {courseName}
                 </span>
               </p>
-            </a>
+            
             <p className="mb-4 text-gray-700">
               <span className="flex">
                 <ForwardIcon className="w-6 h-6 text-blue-700 mr-2" />
@@ -37,11 +36,7 @@ const Class = ({ classItem: { courseName, TeacherName, picture, price,_id } }) =
               </span>
             </p>
             <div className="flex space-x-4">
-              <a
-                href="/"
-                aria-label="Likes"
-                className="flex items-start text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700 group"
-              >
+              
                 <div className="mr-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -68,12 +63,8 @@ const Class = ({ classItem: { courseName, TeacherName, picture, price,_id } }) =
                   </svg>
                 </div>
                 <p className="font-semibold">7.4K</p>
-              </a>
-              <a
-                href="/"
-                aria-label="Comments"
-                className="flex items-start text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700 group"
-              >
+              
+              
                 <div className="mr-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +91,8 @@ const Class = ({ classItem: { courseName, TeacherName, picture, price,_id } }) =
                   </svg>
                 </div>
                 <p className="font-semibold">81</p>
-              </a>
+              
+              <button className="text-white bg-sky-500 px-4 py-1 rounded hover:bg-sky-600">Add To Cart</button>
             </div>
           </div>
         </div>
@@ -110,4 +102,4 @@ const Class = ({ classItem: { courseName, TeacherName, picture, price,_id } }) =
 };
 
 export default Class;
-<h1>Class</h1>;
+

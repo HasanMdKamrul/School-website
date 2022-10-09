@@ -13,7 +13,17 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        index: true,
+        element: (
+          <>
+            <Home />
+            <Classes />
+          </>
+        ),
+        loader: () => fetch(`classes.json`),
+      },
+      {
+        path: '/home',
         element: (
           <>
             <Home />
