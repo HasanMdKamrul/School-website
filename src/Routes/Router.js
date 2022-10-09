@@ -22,17 +22,17 @@ const router = createBrowserRouter([
           {
             path: "/home",
             element: <Home />,
-            loader: () => fetch(`classes.json`),
+           
           },
           {
             path: "/classes",
             element: <Classes />,
-            loader: () => fetch(`classes.json`),
+            loader: () => fetch(`/classes.json`),
           },
           {
             path: "/class/:classId",
             element: <ClassDetails />,
-            loader: ({ params }) => fetch(`class/${params.classId}.json`),
+            loader: ({ params }) => fetch(`/class/course_${params.classId}.json`),
           },
         ],
       }

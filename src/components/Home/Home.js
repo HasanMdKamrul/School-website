@@ -1,5 +1,6 @@
 import Lottie from 'lottie-react';
 import React from "react";
+import { Link } from 'react-router-dom';
 import abcdAnimation from '../../assests/homeAnimation.json';
 
 const Home = () => {
@@ -25,13 +26,13 @@ const Home = () => {
         </div>
         <div className="flex items-center text-blue-500">
           <input className="border px-5 py-3 border-amber-400 shadow-xl mr-5  rounded-lg" type="text" placeholder="Search Class" />
-          <a
-            href="/"
+          <Link
+            to="/classes"
             aria-label=""
             className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
           >
-            Learn more
-          </a>
+            Buy Course
+          </Link>
         </div>
       </div>
       <div>

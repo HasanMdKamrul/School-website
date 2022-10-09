@@ -12,6 +12,8 @@ const ClassDetails = () => {
   const [cart, setCart] = useState([]);
   const data = useLoaderData();
 
+  console.log(data)
+
   const addToCart = (product) => {
     const newCart = [...cart, product];
     setCart(newCart);
