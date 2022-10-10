@@ -5,8 +5,8 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="bg-slate-900">
-      <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    
+      <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 border-b-2 border-b-slate-900">
         <div className="relative flex items-center justify-between">
           <Link
             to="/"
@@ -29,7 +29,7 @@ export const Header = () => {
               <rect x="14" y="1" width="7" height="6" />
               <rect x="14" y="11" width="7" height="12" />
             </svg>
-            <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
+            <span className="ml-2 text-xl font-bold tracking-wide text-dark uppercase">
               mySchool
             </span>
           </Link>
@@ -39,14 +39,14 @@ export const Header = () => {
                 to="/home"
                 aria-label="Home"
                 title="Home"
-                className={({isActive})=> isActive ? "font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
+                className={({isActive})=> isActive ? "font-medium tracking-wide text-dark transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
               >
                 Home
               </NavLink>
             </li>
             <li>
               <NavLink
-                className={({isActive})=> isActive ? "font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
+                className={({isActive})=> isActive ? "font-medium tracking-wide text-dark transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
                 to="/classes"
                 aria-label="Classes"
                 title="Classes"
@@ -195,6 +195,6 @@ export const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };

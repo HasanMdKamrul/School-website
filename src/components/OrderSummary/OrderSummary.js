@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { resetLocalStorage } from "../../ManageDb/ManageDb";
 import CartIndividual from "../CartIndividual/CartIndividual";
 import { CartContext } from "../Contexts/Context";
@@ -13,8 +14,24 @@ const OrderSummary = () => {
   }
 
   const checkOutHandler = ()=>{
-    setCart([]);
-    resetLocalStorage();
+
+    if (cart.length) {
+      setCart([]);
+      resetLocalStorage();
+  
+      toast.success('Order Placed',{
+        autoClose: 500,
+        position: "top-center",
+      })
+    }
+
+    toast.error('Please place an order',{
+      autoClose: 500,
+      position: "top-center",
+    })
+
+
+   
 
   }
 

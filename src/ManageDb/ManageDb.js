@@ -34,11 +34,14 @@ const setDataToLocalStorage = (id)=>{
 const removeDataFromLs = (id)=>{
     const storedCart = getDataFromLs();
 
-    if (id in storedCart) {
-        delete storedCart[id];
-
-        localStorage.setItem('shopping-cart',JSON.stringify(storedCart));
+    if (storedCart){
+        if (id in storedCart) {
+            delete storedCart[id];
+    
+            localStorage.setItem('shopping-cart',JSON.stringify(storedCart));
+        }
     }
+    
 
 }
 

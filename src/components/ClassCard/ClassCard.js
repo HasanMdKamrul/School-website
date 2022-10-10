@@ -2,6 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const ClassCard = ({data,addToCart}) => {
 
   const navigate = useNavigate()

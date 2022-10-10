@@ -1,4 +1,8 @@
-import { AcademicCapIcon, CurrencyEuroIcon, ForwardIcon } from "@heroicons/react/24/solid";
+import {
+  AcademicCapIcon,
+  CurrencyEuroIcon,
+  ForwardIcon
+} from "@heroicons/react/24/solid";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -85,12 +89,14 @@ const Class = ({
                     strokeMiterlimit="10"
                   />
                 </svg>
-               
               </div>
               <p className="font-semibold">81</p>
-              <span className="flex"> <CurrencyEuroIcon className="w-6 h-6 text-orange-600"/>Price: {price} </span>
+              <span className="flex">
+                {" "}
+                <CurrencyEuroIcon className="w-6 h-6 text-orange-600" />
+                Price: {price}{" "}
+              </span>
             </div>
-            
           </div>
         </div>
       </Link>
