@@ -1,12 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext } from "react";
-import { CardContext } from "../ClassDetails/ClassDetails";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const ClassCard = ({addToCart}) => {
+const ClassCard = ({data,addToCart}) => {
+
+  const navigate = useNavigate()
    
-  const { TeacherName, courseName, picture, price} = useContext(CardContext);
+  const { TeacherName, courseName, picture, price} = data;
 
-  const data = useContext(CardContext);
+  const handleViewOrderPage = ()=>{
+    navigate(`/orders`)
+  }
+
  
   return (
     <div>
@@ -130,10 +135,10 @@ const ClassCard = ({addToCart}) => {
                 </span>
                 <button onClick={()=> addToCart(data)} className="py-2 px-4 bg-purple-400 ml-2 rounded-lg text-white hover:bg-purple-600">Add To Cart</button>
               </div>
+              <button onClick={()=> handleViewOrderPage()} className="py-1 w-full px-4 bg-blue-500 mt-5 text-white rounded-lg hover:bg-blue-800">View Order Page</button>
             </div>
           </div>
         </div>
-        
       </section>
     </div>
   );

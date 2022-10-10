@@ -1,14 +1,24 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { Header } from '../components/Header/Header';
+import React from "react";
+import { Outlet, useLoaderData } from "react-router-dom";
+import { ProductsData } from "../components/Contexts/Context";
+import { Header } from "../components/Header/Header";
+
+
+
 
 const Main = () => {
-    return (
-        <>
-          <Header/>
-          <Outlet/>  
-        </>
-    );
+
+  const products = useLoaderData();
+ 
+
+  return (
+    
+      <ProductsData.Provider value={products}>
+        <Header />
+        <Outlet />
+      </ProductsData.Provider>
+    
+  );
 };
 
 export default Main;

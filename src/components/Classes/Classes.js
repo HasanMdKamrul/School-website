@@ -1,9 +1,11 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext } from "react";
+
 import Class from "../Class/Class";
+import { ProductsData } from "../Contexts/Context";
 
 const Classes = () => {
-  const classes = useLoaderData();
+  const classes = useContext(ProductsData)
+
   
   return (
     <>
