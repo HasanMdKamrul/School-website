@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { setDataToLocalStorage } from "../../ManageDb/ManageDb";
 import ClassCard from "../ClassCard/ClassCard";
+import { CartContext } from "../Contexts/Context";
 import "./ClassDetails.css";
 
 const ClassDetails = () => {
-  const [cart, setCart] = useState([]);
+
+  const [cart,setCart] = useContext(CartContext)
+
+  // const [cart, setCart] = useState([]);
   const data = useLoaderData();
 
   const addToCart = (product) => {
