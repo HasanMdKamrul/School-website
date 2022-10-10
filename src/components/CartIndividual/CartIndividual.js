@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import { removeDataFromLs } from "../../ManageDb/ManageDb";
+import { CartContext } from "../Contexts/Context";
 
-const CartIndividual = ({ item: { courseName, picture, price, quantity } }) => {
+const CartIndividual = ({ item: { courseName, picture, price, quantity,_id } }) => {
 
    
-
+    const [cart,setCart] = useContext(CartContext);
     const individualTotalPrice = price * quantity;
+
+    const removeHandler = (id)=>{
+        // ** remove from cart
+
+        const remainingProducts = cart.filter(item=> item._id !== id);
+
+        setCart(remainingProducts);
+
+        // ** remove from localStorage
+
+        removeDataFromLs(id);
+
+    }
     
 
   return (
@@ -44,7 +59,7 @@ const CartIndividual = ({ item: { courseName, picture, price, quantity } }) => {
                 <rect width="32" height="200" x="312" y="216"></rect>
                 <path d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z"></path>
               </svg>
-              <span>Remove</span>
+              <span onClick={()=> removeHandler(_id) }>Remove</span>
             </button>
             <button
               type="button"

@@ -28,4 +28,19 @@ const setDataToLocalStorage = (id)=>{
 
 };
 
-export { getDataFromLs, setDataToLocalStorage };
+
+// ** Items remove from cart
+
+const removeDataFromLs = (id)=>{
+    const storedCart = getDataFromLs();
+
+    if (id in storedCart) {
+        delete storedCart[id];
+
+        localStorage.setItem('shopping-cart',JSON.stringify(storedCart));
+    }
+
+}
+
+export { getDataFromLs, setDataToLocalStorage, removeDataFromLs };
+
