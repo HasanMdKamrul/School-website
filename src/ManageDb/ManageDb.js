@@ -42,5 +42,11 @@ const removeDataFromLs = (id)=>{
 
 }
 
-export { getDataFromLs, setDataToLocalStorage, removeDataFromLs };
+// ** reset the localStorage
+
+const resetLocalStorage = ()=>{
+    localStorage.removeItem('shopping-cart')
+}
+
+export { getDataFromLs, setDataToLocalStorage, removeDataFromLs, resetLocalStorage };
 

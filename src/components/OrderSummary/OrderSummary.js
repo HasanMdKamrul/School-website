@@ -1,9 +1,22 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { resetLocalStorage } from "../../ManageDb/ManageDb";
 import CartIndividual from "../CartIndividual/CartIndividual";
 import { CartContext } from "../Contexts/Context";
 
 const OrderSummary = () => {
-  const [cart] = useContext(CartContext);
+  const [cart,setCart] = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const shopButtonHandler = ()=>{
+      navigate(`/classes`)
+  }
+
+  const checkOutHandler = ()=>{
+    setCart([]);
+    resetLocalStorage();
+
+  }
 
   const totalPrice = cart.reduce((previousValue,currentValue)=> previousValue + currentValue.price * currentValue.quantity,0)
 
@@ -13,7 +26,7 @@ const OrderSummary = () => {
       <h2 className="text-xl text-lime-600 font-semibold">Added Products To Cart</h2>
       <ul className="flex flex-col divide-y divide-gray-700">
         {
-          cart.length > 0 && cart.map(item => <CartIndividual key={item._id} item={item}/>)
+          cart.length > 0 ? cart.map(item => <CartIndividual key={item._id} item={item}/>) : <button className="py-1 px-3 text-white bg-sky-400 rounded hover:bg-sky-900" onClick={()=> shopButtonHandler()}>Go To Shop</button>
         }
        
       </ul>
@@ -28,6 +41,7 @@ const OrderSummary = () => {
       </div>
       <div className="flex justify-end space-x-4">
         <button
+        onClick={shopButtonHandler}
           type="button"
           className="px-6 py-2 border rounded-md dark:border-violet-400"
         >
@@ -35,6 +49,7 @@ const OrderSummary = () => {
           <span className="sr-only sm:not-sr-only">to shop</span>
         </button>
         <button
+        onClick={()=> checkOutHandler()}
           type="button"
           className="px-6 py-2 border rounded-md dark:bg-violet-400 dark:text-gray-900 dark:border-violet-400"
         >
