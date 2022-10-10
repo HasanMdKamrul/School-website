@@ -4,6 +4,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Home from "../components/Home/Home";
 import OrderSummary from "../components/OrderSummary/OrderSummary";
 import Main from "../layouts/Main";
+import { getProductsAndStoredCart } from "../loaders/getProductsAndStoredCart";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Main />,
     errorElement: <ErrorPage />,
-    loader: ()=> fetch(`/classes.json`),
+    loader: getProductsAndStoredCart,
     children: [
       {
         errorElement:<ErrorPage/>,

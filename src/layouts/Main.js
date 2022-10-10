@@ -1,23 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
-import { ProductsData } from "../components/Contexts/Context";
+import { CartContext, ProductsData } from "../components/Contexts/Context";
 import { Header } from "../components/Header/Header";
 
-
-
-
 const Main = () => {
+  const { products, initialCart } = useLoaderData();
 
-  const products = useLoaderData();
- 
+  const [cart, setCart] = useState(initialCart);
 
   return (
-    
-      <ProductsData.Provider value={products}>
+    <ProductsData.Provider value={products}>
+      <CartContext.Provider value={[cart,setCart]}>
         <Header />
         <Outlet />
-      </ProductsData.Provider>
-    
+      </CartContext.Provider>
+    </ProductsData.Provider>
   );
 };
 
