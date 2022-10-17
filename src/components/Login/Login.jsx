@@ -1,12 +1,18 @@
 import Lottie from "lottie-react";
 import React, { useContext, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logInAnimation from '../../assests/login.json';
 import { AuthContext } from "../Contexts/UserContext";
 
 const Login = () => {
 
     const [error,setError] = useState("");
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    const from = location.state?.from?.pathname;
 
     const {logIn} = useContext(AuthContext);
     
@@ -26,6 +32,11 @@ const Login = () => {
            await logIn(email,password);
             setError("Logged In");
             form.reset();
+            // ** redirect to the page
+
+            navigate(from, {replace: true});
+
+
         } catch (error) {
             console.log(error);
             setError(error.message);

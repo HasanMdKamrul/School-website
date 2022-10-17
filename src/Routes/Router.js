@@ -4,6 +4,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
 import OrderSummary from "../components/OrderSummary/OrderSummary";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import SignUp from "../components/SignUp/SignUp";
 import Main from "../layouts/Main";
 import { getProductsAndStoredCart } from "../loaders/getProductsAndStoredCart";
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
             },
             {
               path: "/classes",
-              element: <Classes />,
+              element: <PrivateRoute> <Classes /></PrivateRoute>
             },
             {
               path: "/class/:classId",
