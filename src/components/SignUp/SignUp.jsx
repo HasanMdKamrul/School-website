@@ -5,12 +5,11 @@ import signUpAnimation from "../../assests/signup.json";
 import { AuthContext } from "../Contexts/UserContext";
 
 const SignUp = () => {
+  const [error, setError] = useState('');
 
-  const [error,setError] = useState(null);
+  const { createUser } = useContext(AuthContext);
 
-  const {createUser} = useContext(AuthContext)
-
-  const handleSubmit = event=>{
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -18,52 +17,52 @@ const SignUp = () => {
     const password = form.password.value;
     const confirm = form.confirm.value;
 
-    console.log(email,password,confirm);
+    console.log(email, password, confirm);
 
     // ** Validation
 
     if (password !== confirm) {
-      setError("Password don't match")
+      setError("Password don't match");
       return;
-    };
+    }
 
-    if (! /(?=.*?[A-Z])/.test(password)) {
-      setError('At least one upper case');
+    if (!/(?=.*?[A-Z])/.test(password)) {
+      setError("At least one upper case");
       return;
     }
-    if (! /(?=.*?[a-z])/.test(password)) {
-      setError('At least one lower case');
+    if (!/(?=.*?[a-z])/.test(password)) {
+      setError("At least one lower case");
       return;
     }
-    if (! /(?=.*?[0-9])/.test(password)) {
-      setError('At least one digit');
+    if (!/(?=.*?[0-9])/.test(password)) {
+      setError("At least one digit");
       return;
     }
-    if (! /(?=.*?[#?!@$%^&*-])/.test(password)) {
-      setError('At least one special character');
+    if (!/(?=.*?[#?!@$%^&*-])/.test(password)) {
+      setError("At least one special character");
       return;
     }
     if (password.length < 6) {
-      setError('Please provide at least 6 charecters');
+      setError("Please provide at least 6 charecters");
       return;
     }
 
     // ** user creation
 
-    const userCreation = async ()=>{
+    const userCreation = async () => {
       try {
-        const result = await createUser(email,password);
-        console.log("user created successfully",result.user);
+        const result = await createUser(email, password);
+        console.log("user created successfully", result.user);
+        setError('User Created')
         form.reset();
       } catch (error) {
         console.log(error);
-        setError(error)
+        setError(error.message);
       }
     };
 
     userCreation();
-
-  }
+  };
 
   return (
     <section>
@@ -85,39 +84,37 @@ const SignUp = () => {
               </div>
 
               <form onSubmit={handleSubmit} className="mt-6 space-y-2">
-                
-                  <label htmlFor="email" className="sr-only">
-                    Email
-                  </label>
-                  <input
+                <label htmlFor="email" className="sr-only">
+                  Email
+                </label>
+                <input
                   required
-                    type="text"
-                    name="email"
-                    id="email"
-                    className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                    placeholder="Enter your email"
-                  />
-                
-                
-                  <label htmlFor="password" className="sr-only">
-                    Password
-                  </label>
-                  <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                  placeholder="Enter your email"
+                />
+
+                <label htmlFor="password" className="sr-only">
+                  Password
+                </label>
+                <input
                   required
-                    type="password"
-                    name="password"
-                    id="password"
-                    className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                    placeholder="Enter your password"
-                  />
-                  <input
-                    type="password"
-                    name="confirm"
-                    id="confirm"
-                    className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                    placeholder="confirm your password"
-                  />
-                
+                  type="password"
+                  name="password"
+                  id="password"
+                  className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                  placeholder="Enter your password"
+                />
+                <input
+                  type="password"
+                  name="confirm"
+                  id="confirm"
+                  className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                  placeholder="confirm your password"
+                />
+
                 <div className="flex flex-col mt-4 lg:space-y-2">
                   <button
                     type="submit"
@@ -155,6 +152,11 @@ const SignUp = () => {
                     {" "}
                     Already have an account?{" "}
                   </Link>
+                  {
+                    error && <small className="inline-flex justify-center py-4 text-base font-medium text-gray-500 focus:outline-none hover:text-neutral-600 focus:text-blue-600 sm:text-sm">
+                      {error}
+                    </small>
+                  }
                 </div>
               </form>
             </div>

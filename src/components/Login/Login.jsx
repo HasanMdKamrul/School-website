@@ -1,9 +1,14 @@
 import Lottie from "lottie-react";
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from "react-router-dom";
 import logInAnimation from '../../assests/login.json';
+import { AuthContext } from "../Contexts/UserContext";
 
 const Login = () => {
+
+    const [error,setError] = useState("");
+
+    const {logIn} = useContext(AuthContext);
     
   const handleSubmit = event=>{
     event.preventDefault();
@@ -12,7 +17,22 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
    
-    console.log(email,password)
+    console.log(email,password);
+
+    // ** login
+
+    const logInUser = async()=>{
+        try {
+           await logIn(email,password);
+            setError("Logged In");
+            form.reset();
+        } catch (error) {
+            console.log(error);
+            setError(error.message);
+        }
+    }
+    logInUser()
+
   }
 
   return (
@@ -77,6 +97,11 @@ const Login = () => {
                     {" "}
                     Don't have an account?{" "}
                   </Link>
+                  {
+                    error && <span className="inline-flex justify-center py-4 text-base font-medium text-gray-500 focus:outline-none hover:text-neutral-600 focus:text-blue-600 sm:text-sm">
+                        {error}
+                    </span>
+                  }
                 </div>
               </form>
             </div>
