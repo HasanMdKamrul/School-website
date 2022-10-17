@@ -2,6 +2,7 @@ import ClassDetails from "../components/ClassDetails/ClassDetails";
 import Classes from "../components/Classes/Classes";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Home from "../components/Home/Home";
+import Login from "../components/Login/Login";
 import OrderSummary from "../components/OrderSummary/OrderSummary";
 import Main from "../layouts/Main";
 import { getProductsAndStoredCart } from "../loaders/getProductsAndStoredCart";
@@ -14,35 +15,40 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement: <ErrorPage />,
     loader: getProductsAndStoredCart,
+    errorElement: <ErrorPage />,
     children: [
       {
-        errorElement:<ErrorPage/>,
-        children: [
-          {
-            index: true,
-            element: <Home/>,
-          },
-          {
-            path: "/home",
-            element: <Home />,
-          },
-          {
-            path: "/classes",
-            element: <Classes />,
-          },
-          {
-            path: "/class/:classId",
-            element: <ClassDetails />,
-            loader: ({ params }) => fetch(`/class/course_${params.classId}.json`),
-          },
-          {
-            path:'/orders',
-            element: <OrderSummary/>
-          }
-        ],
+          errorElement:<ErrorPage/>,
+          children: [
+            {
+              index: true,
+              element: <Home/>,
+            },
+            {
+              path: "/home",
+              element: <Home />,
+            },
+            {
+              path: "/login",
+              element: <Login/>,
+            },
+            {
+              path: "/classes",
+              element: <Classes />,
+            },
+            {
+              path: "/class/:classId",
+              element: <ClassDetails />,
+              loader: ({ params }) => fetch(`/class/course_${params.classId}.json`),
+            },
+            {
+              path:'/orders',
+              element: <OrderSummary/>
+            }
+          ],
       }
+     
     ],
   },
 ]);
