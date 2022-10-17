@@ -75,18 +75,32 @@ export const Header = () => {
 
           <li>
             <NavLink
-              to="/about"
+              to="/orders"
               aria-label="About "
               title="About "
               className={({ isActive }) =>
                 isActive
-                  ? "font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                  ? "font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                   : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400"
               }
             >
-              About
+              Orders
             </NavLink>
           </li>
+          { !(user && user.uid) &&<li>
+            <NavLink
+              to="/signup"
+              aria-label="About "
+              title="About "
+              className={({ isActive }) =>
+                isActive
+                  ? "font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
+                  : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400"
+              }
+            >
+              Sign Up
+            </NavLink>
+          </li>}
           {user && user?.uid && (
             <button onClick={signOutHandler}>
             

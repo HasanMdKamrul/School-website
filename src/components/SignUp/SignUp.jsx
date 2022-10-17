@@ -1,13 +1,25 @@
 import Lottie from "lottie-react";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import signUpAnimation from "../../assests/signup.json";
 import { AuthContext } from "../Contexts/UserContext";
 
 const SignUp = () => {
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation()
 
-  const { createUser } = useContext(AuthContext);
+  const from = location.state?.from?.pathname ;
+
+  const { createUser,googleSignIn } = useContext(AuthContext);
+
+  const googleSignInHandler = ()=>{
+    googleSignIn()
+    .then((result)=> {
+      navigate(from || '/', {replace: true});
+    })
+    .catch((error)=> setError(error.message))
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -55,6 +67,8 @@ const SignUp = () => {
         console.log("user created successfully", result.user);
         setError('User Created')
         form.reset();
+        navigate(from || '/', {replace: true});
+
       } catch (error) {
         console.log(error);
         setError(error.message);
@@ -123,6 +137,7 @@ const SignUp = () => {
                     Sign Up
                   </button>
                   <button
+                  onClick={googleSignInHandler}
                     type="button"
                     className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
                   >

@@ -12,7 +12,7 @@ const Login = () => {
     const location = useLocation();
 
 
-    const from = location.state?.from?.pathname;
+    const from = location.state?.from?.pathname ;
 
     const {logIn} = useContext(AuthContext);
     
@@ -34,7 +34,7 @@ const Login = () => {
             form.reset();
             // ** redirect to the page
 
-            navigate(from, {replace: true});
+            navigate(from || '/', {replace: true});
 
 
         } catch (error) {

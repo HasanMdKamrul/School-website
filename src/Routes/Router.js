@@ -45,12 +45,12 @@ const router = createBrowserRouter([
             },
             {
               path: "/class/:classId",
-              element: <ClassDetails />,
+              element: <PrivateRoute><ClassDetails /></PrivateRoute> ,
               loader: ({ params }) => fetch(`/class/course_${params.classId}.json`),
             },
             {
               path:'/orders',
-              element: <OrderSummary/>
+              element: <PrivateRoute><OrderSummary/></PrivateRoute>
             }
           ],
       }
