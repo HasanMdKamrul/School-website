@@ -4,6 +4,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
 import OrderSummary from "../components/OrderSummary/OrderSummary";
+import SignUp from "../components/SignUp/SignUp";
 import Main from "../layouts/Main";
 import { getProductsAndStoredCart } from "../loaders/getProductsAndStoredCart";
 
@@ -30,8 +31,12 @@ const router = createBrowserRouter([
               element: <Home />,
             },
             {
+              path: "/signup",
+              element: <SignUp/>
+            },
+            {
               path: "/login",
-              element: <Login/>,
+              element: <Login/>
             },
             {
               path: "/classes",

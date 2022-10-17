@@ -1,18 +1,20 @@
 import Lottie from "lottie-react";
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
-import logInAnimation from '../../assests/login.json';
+import signUpAnimation from "../../assests/signup.json";
 
-const Login = () => {
-    
+const SignUp = () => {
+
+
   const handleSubmit = event=>{
     event.preventDefault();
 
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-   
-    console.log(email,password)
+    const confirm = form.confirm.value;
+
+    console.log(email,password,confirm)
   }
 
   return (
@@ -25,11 +27,11 @@ const Login = () => {
                 <div className="mt-3 text-left sm:mt-5">
                   <div className="inline-flex items-center w-full">
                     <h3 className="  text-neutral-600 eading-6 lg:text-4xl">
-                        Log In
+                      Sign up
                     </h3>
                   </div>
                   <div className="mt-4 text-base text-gray-500">
-                    <p>Please log in to view the full content.</p>
+                    <p>Sign up and get our newest news.</p>
                   </div>
                 </div>
               </div>
@@ -58,30 +60,56 @@ const Login = () => {
                     className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                     placeholder="Enter your password"
                   />
-                  
+                  <input
+                    type="password"
+                    name="confirm"
+                    id="confirm"
+                    className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                    placeholder="confirm your password"
+                  />
                 
                 <div className="flex flex-col mt-4 lg:space-y-2">
                   <button
                     type="submit"
                     className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-blue-700 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                   >
-                    Log In
+                    Sign Up
                   </button>
-                 
+                  <button
+                    type="button"
+                    className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+                  >
+                    <svg
+                      className="mr-2 -ml-1 w-4 h-4"
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fab"
+                      data-icon="google"
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 488 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+                      ></path>
+                    </svg>
+                    Sign in with Google
+                  </button>
 
                   <Link
-                    to="/signup"
+                    to="/login"
                     type="button"
                     className="inline-flex justify-center py-4 text-base font-medium text-gray-500 focus:outline-none hover:text-neutral-600 focus:text-blue-600 sm:text-sm"
                   >
                     {" "}
-                    Don't have an account?{" "}
+                    Already have an account?{" "}
                   </Link>
                 </div>
               </form>
             </div>
             <div className="order-first hidden w-full lg:block">
-              <Lottie animationData={logInAnimation} loop={true} />
+              <Lottie animationData={signUpAnimation} loop={true} />
             </div>
           </div>
         </div>
@@ -90,4 +118,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
