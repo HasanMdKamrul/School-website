@@ -1,10 +1,14 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import signUpAnimation from "../../assests/signup.json";
+import { AuthContext } from "../Contexts/UserContext";
 
 const SignUp = () => {
 
+  const [error,setError] = useState(null);
+
+  const {createUser} = useContext(AuthContext)
 
   const handleSubmit = event=>{
     event.preventDefault();
@@ -14,7 +18,51 @@ const SignUp = () => {
     const password = form.password.value;
     const confirm = form.confirm.value;
 
-    console.log(email,password,confirm)
+    console.log(email,password,confirm);
+
+    // ** Validation
+
+    if (password !== confirm) {
+      setError("Password don't match")
+      return;
+    };
+
+    if (! /(?=.*?[A-Z])/.test(password)) {
+      setError('At least one upper case');
+      return;
+    }
+    if (! /(?=.*?[a-z])/.test(password)) {
+      setError('At least one lower case');
+      return;
+    }
+    if (! /(?=.*?[0-9])/.test(password)) {
+      setError('At least one digit');
+      return;
+    }
+    if (! /(?=.*?[#?!@$%^&*-])/.test(password)) {
+      setError('At least one special character');
+      return;
+    }
+    if (password.length < 6) {
+      setError('Please provide at least 6 charecters');
+      return;
+    }
+
+    // ** user creation
+
+    const userCreation = async ()=>{
+      try {
+        const result = await createUser(email,password);
+        console.log("user created successfully",result.user);
+        form.reset();
+      } catch (error) {
+        console.log(error);
+        setError(error)
+      }
+    };
+
+    userCreation();
+
   }
 
   return (
@@ -42,6 +90,7 @@ const SignUp = () => {
                     Email
                   </label>
                   <input
+                  required
                     type="text"
                     name="email"
                     id="email"
@@ -54,6 +103,7 @@ const SignUp = () => {
                     Password
                   </label>
                   <input
+                  required
                     type="password"
                     name="password"
                     id="password"

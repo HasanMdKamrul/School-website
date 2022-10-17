@@ -1,7 +1,11 @@
+import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 export const Header = () => {
+
+ 
+ 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -63,6 +67,17 @@ export const Header = () => {
                 className={({isActive})=> isActive ? "font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
               >
                 About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/signup"
+                aria-label="About "
+                title="signup "
+                className={({isActive})=> isActive ? "font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400" : "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-teal-accent-400" }
+              >
+                 <ArrowRightOnRectangleIcon className="h-6 w-6 text-blue-500"/>
+              
               </NavLink>
             </li>
           </ul>

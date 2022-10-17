@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import App from "./App";
+import UserContext from "./components/Contexts/UserContext";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
@@ -12,7 +13,9 @@ root.render(
   <React.StrictMode>
     <ToastContainer position="top-center"
 autoClose={5000}  />
+    <UserContext>
     <App />
+    </UserContext>
   </React.StrictMode>
 );
 
